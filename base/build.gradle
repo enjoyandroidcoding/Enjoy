@@ -21,6 +21,10 @@ android {
             }
         }
 
+        dataBinding{
+            enabled true
+        }
+
     }
 
     buildTypes {
@@ -71,6 +75,13 @@ dependencies {
     api rootProject.ext.depend["autodispose-android"]
     api rootProject.ext.depend["autodispose-lifecycle"]
     api rootProject.ext.depend["autodispose-android-archcomponents"]
+    api rootProject.ext.depend["jetpack_lifecycle_extensions"]
+    api rootProject.ext.depend["jetpack_lifecycle_java8"]
+    api rootProject.ext.depend["jetpack_lifecycle_compiler"]
+    api rootProject.ext.depend["jetpack_viewmodel"]
+    api rootProject.ext.depend["jetpack_lifecycle_viewmodel_ktx"]
+    api rootProject.ext.depend["jetpack_livedata"]
+    api rootProject.ext.depend["jetpack_livedata_rx"]
 
 
     kapt rootProject.ext.depend["dagger-processor"]

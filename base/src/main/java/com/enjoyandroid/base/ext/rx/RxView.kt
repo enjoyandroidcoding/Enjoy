@@ -17,7 +17,17 @@ fun View.preventDuplicateClicks(): Observable<Unit> {
     return clicks().throttleFirst(500, TimeUnit.MILLISECONDS)
 }
 
- fun View.preventDuplicateClicksWithDispose(owner: LifecycleOwner): ObservableSubscribeProxy<Unit>? {
-     return preventDuplicateClicks()
-         .`as`<ObservableSubscribeProxy<Unit>?>(autoDisposable<Unit>((AndroidLifecycleScopeProvider.from(owner, Lifecycle.Event.ON_DESTROY))))
+/**
+ * 避免内存泄漏的 &  防重复点击的扩展函数
+ */
+fun View.preventDuplicateClicksWithDispose(owner: LifecycleOwner): ObservableSubscribeProxy<Unit>? {
+    return preventDuplicateClicks()
+        .`as`<ObservableSubscribeProxy<Unit>?>(
+            autoDisposable<Unit>(
+                (AndroidLifecycleScopeProvider.from(
+                    owner,
+                    Lifecycle.Event.ON_DESTROY
+                ))
+            )
+        )
 }

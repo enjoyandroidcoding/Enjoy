@@ -17,8 +17,12 @@ android {
                 arg("AROUTER_MODULE_NAME", project.getName())
             }
         }
-        // 64k
+        // 64k 分包
         multiDexEnabled true
+        // 启用 dataBinding
+        dataBinding{
+            enabled true
+        }
     }
     buildTypes {
         release {
