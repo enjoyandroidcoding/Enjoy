@@ -1,0 +1,71 @@
+if (rootProject.ext.isGankApplication){
+    apply plugin: 'com.android.application'
+}else {
+    apply plugin: 'com.android.library'
+}
+
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+android {
+    compileSdkVersion rootProject.ext.commonVersion.compileSdkVersion
+
+
+    defaultConfig {
+        minSdkVersion rootProject.ext.commonVersion.minSdkVersion
+        targetSdkVersion rootProject.ext.commonVersion.targetSdkVersion
+        versionCode rootProject.ext.versionInfo.gankVersionCode
+        versionName rootProject.ext.versionInfo.gankVersionName
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+
+        if (rootProject.ext.isGankApplication){
+            applicationId rootProject.ext.applicationIdConfig.gankApplicationId
+        }
+
+        kapt {
+            arguments {
+                arg("AROUTER_MODULE_NAME", project.getName())
+            }
+        }
+
+    }
+
+    sourceSets {
+        main{
+            if (rootProject.ext.isGankApplication){
+                manifest.srcFile'src/main/module/AndroidManifest.xml'
+            }else {
+                manifest.srcFile'src/main/AndroidManifest.xml'
+            }
+            jniLibs.srcDirs = ['libs']
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility 1.8
+        targetCompatibility 1.8
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    implementation 'androidx.appcompat:appcompat:1.0.2'
+    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'androidx.test:runner:1.2.0'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+
+    api project(":base")
+    kapt rootProject.ext.depend["dagger-processor"]
+    kapt rootProject.ext.depend["glide-compiler"]
+    kapt rootProject.ext.depend["arouter-compiler"]
+}

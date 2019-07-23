@@ -1,55 +1,53 @@
-apply plugin: 'com.android.application'
+apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 
 android {
-    compileSdkVersion rootProject.ext.commonVersion.compileSdkVersion
+    compileSdkVersion 28
+
+
     defaultConfig {
-        applicationId rootProject.ext.applicationIdConfig.applicationId
-        minSdkVersion rootProject.ext.commonVersion.minSdkVersion
-        targetSdkVersion rootProject.ext.commonVersion.targetSdkVersion
-        versionCode rootProject.ext.versionInfo.versionCode
-        versionName rootProject.ext.versionInfo.versionName
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        minSdkVersion 19
+        targetSdkVersion 28
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         kapt {
             arguments {
                 arg("AROUTER_MODULE_NAME", project.getName())
             }
         }
-        // 64k
-        multiDexEnabled true
+
     }
+
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+
     compileOptions {
         sourceCompatibility 1.8
         targetCompatibility 1.8
     }
-}
 
 
-static def releaseTime() {
-    return new Date().format("MMddHHmmss", TimeZone.getTimeZone("Asia/Shanghai"))
+
+
 }
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
+
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test:runner:1.2.0'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
 
-    implementation project(":common_component")
-    if (!rootProject.ext.isGankApplication) {
-        runtimeOnly project(":gank")
-    }
-    if (!rootProject.ext.isWanAndroidApplication) {
-        runtimeOnly project(":wanandroid")
-    }
+
+    api project(":base")
     kapt rootProject.ext.depend["dagger-processor"]
     kapt rootProject.ext.depend["glide-compiler"]
     kapt rootProject.ext.depend["arouter-compiler"]

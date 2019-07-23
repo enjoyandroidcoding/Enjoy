@@ -1,0 +1,81 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+
+android {
+    compileSdkVersion 28
+
+
+    defaultConfig {
+        minSdkVersion 19
+        targetSdkVersion 28
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        kapt {
+            arguments {
+                arg("AROUTER_MODULE_NAME", project.getName())
+            }
+        }
+
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility 1.8
+        targetCompatibility 1.8
+    }
+
+
+
+}
+
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'androidx.test:runner:1.2.0'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+
+
+    api rootProject.ext.depend["kotlin"]
+    api rootProject.ext.depend["anko"]
+    api rootProject.ext.depend["appcompatx"]
+    api rootProject.ext.depend["constraint"]
+    api rootProject.ext.depend["core-ktx"]
+    api rootProject.ext.depend["retrofit"]
+    api rootProject.ext.depend["retrofit-converter-scalars"]
+    api rootProject.ext.depend["retrofit-adapter-rxjava"]
+    api rootProject.ext.depend["rxkotlin"]
+    api rootProject.ext.depend["rxbinding"]
+    api rootProject.ext.depend["dagger"]
+    api rootProject.ext.depend["dagger-support"]
+    api rootProject.ext.depend["glide"]
+    api rootProject.ext.depend["smart-refresh-layout"]
+    api rootProject.ext.depend["smart-refresh-layout-header"]
+    api rootProject.ext.depend["smart-refresh-layout-androidx"]
+    api rootProject.ext.depend["logger"]
+    api rootProject.ext.depend["fastjson"]
+    api rootProject.ext.depend["arouter"]
+    api rootProject.ext.depend["autodispose"]
+    api rootProject.ext.depend["autodispose-android"]
+    api rootProject.ext.depend["autodispose-lifecycle"]
+    api rootProject.ext.depend["autodispose-android-archcomponents"]
+
+
+    kapt rootProject.ext.depend["dagger-processor"]
+    kapt rootProject.ext.depend["glide-compiler"]
+    kapt rootProject.ext.depend["arouter-compiler"]
+
+
+}

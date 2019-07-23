@@ -1,0 +1,131 @@
+ext {
+
+
+    isGankApplication = false// Gank 是否独立为 App,true 是 false 不是
+    isWanAndroidApplication = false// WanAndroid 是否独立为 App,true 是 false 不是
+
+    /**
+     * ApplicationId 配置
+     */
+    applicationIdConfig = [
+            applicationId          : "com.enjoyandroid.enjoy",
+            gankApplicationId      : "com.enjoyandroid.gank",
+            wanAndroidApplicationId: "com.enjoyandroid.wanandroid",
+    ]
+
+    /**
+     * 公共的版本信息
+     */
+    commonVersion = [
+            compileSdkVersion: 28,
+            buildToolsVersion: "26.0.2",
+            minSdkVersion    : 19,
+            targetSdkVersion : 28,
+    ]
+
+
+    /**
+     * app 发布时的版本信息
+     */
+    versionInfo = [
+            //主 App 版本信息
+            versionCode          : 1,
+            versionName          : "1.0",
+
+            //Gank 单独 App 版本信息
+            gankVersionCode      : 1,
+            gankVersionName      : "1.0",
+
+            //WanAndroid 单独 App 版本信息
+            wanAndroidVersionCode: 1,
+            wanAndroidVersionName: "1.0",
+    ]
+
+    /**
+     * 依赖包的版本信息
+     */
+    dependVersion = [
+            ankoVersion              : "0.10.8",
+            androidx                 : "1.0.2",
+            constraint               : "1.1.3",
+            retrofit                 : "2.6.0",
+            rxjava                   : "2.2.10",
+            rxkotlin                 : "2.4.0-RC3",
+            rxbinding                : "3.0.0-alpha2",
+            rxandroid                : "2.1.1",
+            autodispose              : "1.3.0",
+            logger                   : "2.2.0",
+            dagger                   : "2.23.2",
+            glide                    : "4.9.0",
+            fastjson                 : "1.1.71",
+            smartRefreshLayout       : "1.1.0-andx-14",
+            smartefreshLayoutAndroidx: "1.0.0",
+            arouter                  : "1.5.0",
+            arouterCompiler          : "1.2.2",
+    ]
+
+
+    /**
+     * 插件版本
+     */
+    pluginVersion = [
+            gradleVersion: "3.4.2",
+            kotlinVersion: "1.3.41",
+    ]
+
+    /**
+     * 依赖包配置
+     */
+    depend = [
+            android_plugin                      : "com.android.tools.build:gradle:${pluginVersion["gradleVersion"]}",
+            kotlin_plugin                       : "org.jetbrains.kotlin:kotlin-gradle-plugin:${pluginVersion["kotlinVersion"]}",
+
+            // kotlin
+            "kotlin"                            : "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${pluginVersion["kotlinVersion"]}",
+            "anko"                              : "org.jetbrains.anko:anko-commons:${dependVersion["ankoVersion"]}",
+
+            // android x
+            "appcompatx"                        : "androidx.appcompat:appcompat:${dependVersion['androidx']}",
+            "core-ktx"                          : "androidx.core:core-ktx:${dependVersion['androidx']}",
+
+            "constraint"                        : "androidx.constraintlayout:constraintlayout:${dependVersion["constraint"]}",
+            // retrofit
+            "retrofit"                          : "com.squareup.retrofit2:retrofit:${dependVersion['retrofit']}",
+            "retrofit-converter-scalars"        : "com.squareup.retrofit2:converter-scalars:${dependVersion['retrofit']}",
+            "retrofit-adapter-rxjava"           : "com.squareup.retrofit2:adapter-rxjava:${dependVersion["retrofit"]}",
+            // rxJava
+            "rxkotlin"                          : "io.reactivex.rxjava2:rxkotlin:${dependVersion["rxkotlin"]}",
+            "rxjava"                            : "io.reactivex.rxjava2:rxjava:${dependVersion["rxjava"]}",
+            "rxandroid"                         : "io.reactivex.rxjava2:rxandroid:${dependVersion["rxandroid"]}",
+            "rxbinding"                         : "com.jakewharton.rxbinding3:rxbinding:${dependVersion["rxbinding"]}",
+            "autodispose-android"               : "com.uber.autodispose:autodispose-android:${dependVersion["autodispose"]}",
+            "autodispose"                       : "com.uber.autodispose:autodispose:${dependVersion["autodispose"]}",
+            "autodispose-lifecycle"             : "com.uber.autodispose:autodispose-lifecycle:${dependVersion["autodispose"]}",
+            "autodispose-android-archcomponents": "com.uber.autodispose:autodispose-android-archcomponents:${dependVersion["autodispose"]}",
+
+
+            // dagger2
+            "dagger"                            : "com.google.dagger:dagger-android:${dependVersion["dagger"]}",
+            "dagger-support"                    : "com.google.dagger:dagger-android-support:${dependVersion["dagger"]}",
+            "dagger-processor"                  : "com.google.dagger:dagger-android-processor:${dependVersion["dagger"]}",
+            //glide
+            "glide"                             : "com.github.bumptech.glide:glide:${dependVersion["glide"]}",
+            "glide-compiler"                    : "com.github.bumptech.glide:compiler:${dependVersion["glide"]}",
+
+            // smartRefreshLayout
+            "smart-refresh-layout"              : "com.scwang.smartrefresh:SmartRefreshLayout:${dependVersion["smartRefreshLayout"]}",
+            "smart-refresh-layout-header"       : "com.scwang.smartrefresh:SmartRefreshHeader:${dependVersion["smartRefreshLayout"]}",
+            "smart-refresh-layout-androidx"     : "androidx.legacy:legacy-support-v4:${dependVersion["smartefreshLayoutAndroidx"]}",
+
+
+            // ARouter
+            "arouter"                           : "com.alibaba:arouter-api:${dependVersion["arouter"]}",
+            "arouter-compiler"                  : "com.alibaba:arouter-compiler:${dependVersion["arouterCompiler"]}",
+
+
+            //other
+            "logger"                            : "com.orhanobut:logger:${dependVersion["logger"]}",
+            "fastjson"                          : "com.alibaba:fastjson:${dependVersion["fastjson"]}.android",
+
+    ]
+}
