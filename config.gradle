@@ -1,7 +1,7 @@
 ext {
 
 
-    isGankApplication = true// Gank 是否独立为 App,true 是 false 不是
+    isGankApplication = false// Gank 是否独立为 App,true 是 false 不是
     isWanAndroidApplication = false// WanAndroid 是否独立为 App,true 是 false 不是
 
     /**
